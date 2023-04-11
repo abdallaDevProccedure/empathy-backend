@@ -4,7 +4,7 @@ import { createProduct, getAllProducts, getProductById, updateProduct, deletePro
 export const createNewProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
-    const img = req.file ? req.file.path : undefined;
+    const img = productData.file ? productData.file.path : undefined;
     productData.price = parseFloat(productData.price);
     productData.status = Boolean(productData.status);
     productData.userId = parseInt(productData.userId);
