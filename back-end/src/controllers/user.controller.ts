@@ -55,10 +55,17 @@ export const removeUser = async (req: Request, res: Response) => {
 
 export const validateUser = async (req: Request, res: Response) => {
     try {
-        await userValidation.validate(req.body);
+        const { email, password } = req.query;
+        
+        if (typeof email !== 'string' || typeof password !== 'string') {
+            return res.status(400).send({ message: "Parâmetros inválidos" });
+        }
+        
+        // await userValidation.validate(email);
+        // await userValidation.validate(password);
 
-        const { email, password } = req.body;
-        const user = await getUser(email, password); // atualize para incluir a senha
+        const user = await getUser(email, password);
+        console.log("user ==> ", user)
         if (!user) {
             return res.status(404).send({ message: "Usuário não encontrado" });
         }
@@ -68,6 +75,10 @@ export const validateUser = async (req: Request, res: Response) => {
         return res.status(400).send(e);
     }
 };
+
+
+
+
 
 
 
