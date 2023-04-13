@@ -21,8 +21,10 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+const PORT = process.env.PORT || 3001;
+
 routes(app);
 
-app.listen(3001, () => {
-  console.log("servidor iniciou");
+app.listen(PORT, () => {
+  console.log(`Servidor iniciou na porta ${PORT}`);
 });
