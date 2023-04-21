@@ -52,3 +52,4 @@ export const removeProduct = async (req: Request, res: Response) => {
     res.status(400).send(e);
   }
 };
+//
